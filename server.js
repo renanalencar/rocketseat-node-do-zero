@@ -1,10 +1,19 @@
-import { createServer } from "node:http";
+import { fastify } from "fastify";
 
-const server = createServer((req, res) => {
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end("Hello World\n");
+const server = fastify();
+
+server.get("/", () => {
+  return "Hello, world!";
 });
 
-server.listen(3000);
+server.get("/hello", () => {
+  return "Hello, Rocketseat!";
+});
 
-console.log("Server running at http://localhost:3000/");
+server.get("/node", () => {
+  return "Hello, Node.js!";
+});
+
+server.listen({
+  port: 3333,
+});
